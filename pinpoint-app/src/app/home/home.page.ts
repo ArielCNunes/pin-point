@@ -6,9 +6,14 @@ import {
   IonContent,
   IonFab,
   IonFabButton,
-  IonIcon
+  IonIcon,
+  IonList,
+  IonItem,
+  IonLabel
 } from '@ionic/angular/standalone';
 import { RouterModule } from '@angular/router';
+import { BookmarkService, Bookmark } from 'src/app/services/bookmark.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -22,9 +27,15 @@ import { RouterModule } from '@angular/router';
     IonFab,
     IonFabButton,
     IonIcon,
-    RouterModule
+    IonList,
+    IonItem,
+    IonLabel,
+    RouterModule,
+    CommonModule
   ],
 })
 export class HomePage {
-  constructor() {}
+  bookmarks$ = this.bookmarkService.getBookmarks();
+
+  constructor(private bookmarkService: BookmarkService) { }
 }
