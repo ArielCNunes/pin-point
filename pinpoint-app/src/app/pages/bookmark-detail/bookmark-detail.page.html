@@ -15,6 +15,12 @@
   <h3>Address</h3>
   <p>{{ bookmark.address }}</p>
 
+  <!-- Map View -->
+  <div id="map"
+    style="width: 100%; height: 250px; margin: 16px 0; border-radius: 12px; overflow: hidden; background: #eee; cursor: pointer;"
+    (click)="openInMaps()"></div>
+  <ion-text color="medium"><small>Tap the map to open in Google Maps</small></ion-text>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="success" (click)="goToEditBookmark()">
       <ion-icon name="create-outline"></ion-icon>
