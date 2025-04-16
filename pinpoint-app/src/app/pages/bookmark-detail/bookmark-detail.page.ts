@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonChip, IonLabel, IonFab, IonFabButton, IonIcon } from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { BookmarkService, Bookmark } from 'src/app/services/bookmark.service';
 import { Router } from '@angular/router';
@@ -11,8 +11,7 @@ import { Router } from '@angular/router';
   selector: 'app-bookmark-detail',
   templateUrl: './bookmark-detail.page.html',
   styleUrls: ['./bookmark-detail.page.scss'],
-  standalone: true, // Standalone component for Angular
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonChip, IonLabel, IonFab, IonFabButton, IonIcon, CommonModule, FormsModule] // Importing necessary modules
+  imports: [IonicModule, CommonModule, FormsModule] // Use IonicModule instead of individual Ion* components
 })
 export class BookmarkDetailPage implements OnInit {
   // Holds the bookmark data loaded from Firestore
