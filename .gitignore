@@ -1,0 +1,2 @@
+# Ignore Firebase config file
+pinpoint-app/src/app/firebase.config.ts
