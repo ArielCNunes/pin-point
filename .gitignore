@@ -3,3 +3,4 @@ pinpoint-app/src/app/firebase.config.ts
 
 # Google API key
 pinpoint-app/src/environments/environment.ts
+pinpoint-app/src/environments/environment.prod.ts
