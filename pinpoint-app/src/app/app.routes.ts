@@ -10,4 +10,8 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    path: 'add-bookmark',
+    loadComponent: () => import('./pages/add-bookmark/add-bookmark.page').then( m => m.AddBookmarkPage)
+  },
 ];
