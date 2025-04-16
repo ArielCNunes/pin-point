@@ -2,13 +2,24 @@ import { Component } from '@angular/core';
 import { BookmarkService, Bookmark } from 'src/app/services/bookmark.service';
 import { Geolocation } from '@capacitor/geolocation';
 import { format } from 'date-fns';
-import { NavController, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonInput, IonTextarea, IonButton } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
+import {
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonItem,
+  IonLabel,
+  IonInput,
+  IonTextarea,
+  IonButton
+} from '@ionic/angular/standalone';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-bookmark',
   templateUrl: './add-bookmark.page.html',
   styleUrls: ['./add-bookmark.page.scss'],
-  standalone: true,
   imports: [
     IonHeader,
     IonToolbar,
@@ -18,8 +29,9 @@ import { NavController, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, Io
     IonLabel,
     IonInput,
     IonTextarea,
-    IonButton
-  ],
+    IonButton,
+    FormsModule
+  ]
 })
 export class AddBookmarkPage {
   bookmark: Partial<Bookmark> = {
@@ -29,13 +41,11 @@ export class AddBookmarkPage {
   };
   tagsString = '';
 
-  // Injects the bookmark service for saving data and nav controller for navigation.
   constructor(
     private bookmarkService: BookmarkService,
     private navCtrl: NavController
   ) { }
 
-  // Captures user location, constructs a new bookmark object, and saves it to Firestore.
   async saveBookmark() {
     const coordinates = await Geolocation.getCurrentPosition();
 
