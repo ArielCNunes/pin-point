@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
   IonContent,
   IonFab,
   IonFabButton,
@@ -25,9 +22,6 @@ import { SharedHeaderComponent } from '../shared-header/shared-header.component'
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   imports: [
-    IonHeader,
-    IonToolbar,
-    IonTitle,
     IonContent,
     IonFab,
     IonFabButton,
