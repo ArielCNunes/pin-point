@@ -9,10 +9,13 @@
 <ion-content [fullscreen]="true">
   <ion-list>
     <ion-item-sliding *ngFor="let bookmark of bookmarks$ | async">
-      <ion-item>
+      <ion-item button (click)="editBookmark(bookmark.id!)">
         <ion-label>
           <h2>{{ bookmark.name }}</h2>
           <p>{{ bookmark.description }}</p>
+          <ion-chip *ngFor="let tag of bookmark.tags">
+            <ion-label>{{ tag }}</ion-label>
+          </ion-chip>
         </ion-label>
       </ion-item>
       <ion-item-options side="end">
