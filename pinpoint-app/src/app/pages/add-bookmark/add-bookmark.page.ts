@@ -2,13 +2,24 @@ import { Component } from '@angular/core';
 import { BookmarkService, Bookmark } from 'src/app/services/bookmark.service';
 import { Geolocation } from '@capacitor/geolocation';
 import { format } from 'date-fns';
-import { NavController } from '@ionic/angular';
+import { NavController, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonInput, IonTextarea, IonButton } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-bookmark',
   templateUrl: './add-bookmark.page.html',
   styleUrls: ['./add-bookmark.page.scss'],
   standalone: true,
+  imports: [
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonItem,
+    IonLabel,
+    IonInput,
+    IonTextarea,
+    IonButton
+  ],
 })
 export class AddBookmarkPage {
   bookmark: Partial<Bookmark> = {
