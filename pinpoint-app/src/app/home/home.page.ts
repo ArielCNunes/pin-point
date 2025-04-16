@@ -51,7 +51,7 @@ export class HomePage {
     this.bookmarkService.deleteBookmark(id);
   }
 
-  editBookmark(id: string) {
-    this.router.navigate(['/edit-bookmark', id]);
+  goToBookmark(id: string) {
+    this.router.navigate(['/bookmark', id]);
   }
 }
