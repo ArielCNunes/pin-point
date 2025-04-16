@@ -8,19 +8,23 @@
   <form (ngSubmit)="saveBookmark()" #bookmarkForm="ngForm">
     <ion-item>
       <ion-label position="stacked">Title</ion-label>
-      <ion-input required [(ngModel)]="bookmark.name" name="name"></ion-input>
+      <ion-input required [(ngModel)]="bookmark.name" name="name" #name="ngModel"></ion-input>
+      <div *ngIf="name.invalid && name.touched" class="error-message">Title is required.</div>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Description</ion-label>
-      <ion-textarea [(ngModel)]="bookmark.description" name="description"></ion-textarea>
+      <ion-textarea required [(ngModel)]="bookmark.description" name="description"
+        #description="ngModel"></ion-textarea>
+      <div *ngIf="description.invalid && description.touched" class="error-message">Description is required.</div>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Tags (comma separated)</ion-label>
-      <ion-input [(ngModel)]="tagsString" name="tags"></ion-input>
+      <ion-input required [(ngModel)]="tagsString" name="tags" #tags="ngModel"></ion-input>
+      <div *ngIf="tags.invalid && tags.touched" class="error-message">Tags are required.</div>
     </ion-item>
 
-    <ion-button expand="full" type="submit">Update</ion-button>
+    <ion-button expand="full" type="submit" [disabled]="!bookmarkForm.valid">Update</ion-button>
   </form>
 </ion-content>

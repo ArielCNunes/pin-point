@@ -15,41 +15,50 @@ import { BookmarkService, Bookmark } from 'src/app/services/bookmark.service';
 export class EditBookmarkPage implements OnInit {
   // Holds the bookmark data to be edited, loaded from Firestore
   bookmark: Partial<Bookmark> = {};
+
+  // Holds the comma-separated string of tags to be entered in the form
   tagsString = '';
+
+  // Navigation controller used to navigate back after saving the bookmark
   private navCtrl: NavController;
 
   // Inject route for accessing ID param and bookmark service for fetching data
   constructor(
     private route: ActivatedRoute,
     private bookmarkService: BookmarkService,
-    navCtrl: NavController
+    navCtrl: NavController // Initialize navigation controller
   ) {
     this.navCtrl = navCtrl;
   }
 
+  // Fetch the bookmark by its ID from Firestore when the component initializes
   ngOnInit() {
-    // Extract the bookmark ID from the route parameters
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id'); // Get bookmark ID from the route
     if (id) {
-      // Subscribe to the bookmarks observable and find the one with matching ID
       this.bookmarkService.getBookmarks().subscribe(bookmarks => {
-        const found = bookmarks.find(b => b.id === id);
-        if (found) {
-          // Clone the found bookmark into the editable local model
-          this.bookmark = { ...found };
+        // Find the bookmark with matching ID
+        const foundBookmark = bookmarks.find(b => b.id === id);
+
+        // Only proceed if the bookmark exists
+        if (foundBookmark) {
+          this.bookmark = foundBookmark; // Assign the found bookmark to the component
+          this.tagsString = this.bookmark.tags?.join(', ') || ''; // Safely join tags if they exist
         }
       });
     }
   }
 
+  // Save the updated bookmark data to Firestore
   saveBookmark() {
     if (this.bookmark.id) {
       const updated = {
-        ...this.bookmark,
-        tags: this.tagsString.split(',').map(t => t.trim())
+        ...this.bookmark, // Spread the existing bookmark properties
+        tags: this.tagsString.split(',').map(t => t.trim()) // Split tags by commas and trim whitespace
       };
+
+      // Update the bookmark in Firestore and navigate back
       this.bookmarkService.updateBookmark(this.bookmark.id, updated).then(() => {
-        this.navCtrl.back();
+        this.navCtrl.back(); // Navigate back to the previous page
       });
     }
   }
