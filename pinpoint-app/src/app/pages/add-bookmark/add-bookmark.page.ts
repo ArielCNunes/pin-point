@@ -16,6 +16,7 @@ import {
 } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 import { SharedHeaderComponent } from 'src/app/shared-header/shared-header.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-bookmark',
@@ -48,8 +49,22 @@ export class AddBookmarkPage {
     private navCtrl: NavController
   ) { }
 
+  async getAddressFromCoordinates(lat: number, lon: number) {
+    const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${environment.googleMapsApiKey}`;
+    const response = await fetch(geocodeUrl);
+    const data = await response.json();
+    const address = data.results[0]?.formatted_address;
+    console.log(address);
+    return address;
+  }
+
   async saveBookmark() {
-    const coordinates = await Geolocation.getCurrentPosition();
+    const coordinates = await Geolocation.getCurrentPosition({
+      enableHighAccuracy: true, // High accuracy mode
+    });
+
+    // Get the address from coordinates
+    const address = await this.getAddressFromCoordinates(coordinates.coords.latitude, coordinates.coords.longitude);
 
     const newBookmark: Bookmark = {
       name: this.bookmark.name!,
@@ -57,6 +72,7 @@ export class AddBookmarkPage {
       tags: this.tagsString.split(',').map(tag => tag.trim()),
       latitude: coordinates.coords.latitude,
       longitude: coordinates.coords.longitude,
+      address: address,
       createdAt: format(new Date(), 'PPpp')
     };
 
