@@ -3,6 +3,9 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@capacitor/cli": "^7.2.0",
+    "@capacitor/core": "^7.2.0",
+    "@capacitor/google-maps": "^7.0.1",
     "@ionic/angular": "^8.5.4"
   }
 }
