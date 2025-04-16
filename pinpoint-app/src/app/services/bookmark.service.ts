@@ -11,6 +11,7 @@ export interface Bookmark {
     longitude: number;
     photoUrl?: string;
     createdAt?: string;
+    address?: string;  // Add address field here
 }
 
 @Injectable({ providedIn: 'root' })
