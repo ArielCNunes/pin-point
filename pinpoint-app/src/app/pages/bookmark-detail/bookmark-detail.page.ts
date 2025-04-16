@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class BookmarkDetailPage implements OnInit {
   // Holds the bookmark data loaded from Firestore
   bookmark: Bookmark | undefined;
+  tagsString: string = ''; // Initialize tagsString
 
   // Inject necessary services: ActivatedRoute for route parameters, BookmarkService for fetching data, and Router for navigation
   constructor(
@@ -32,6 +33,9 @@ export class BookmarkDetailPage implements OnInit {
       // Fetch bookmarks and find the one that matches the ID
       this.bookmarkService.getBookmarks().subscribe(bookmarks => {
         this.bookmark = bookmarks.find(b => b.id === id); // Set the bookmark object
+        if (this.bookmark) {
+          this.tagsString = this.bookmark.tags.join(', ') || ''; // Pre-fill the tags
+        }
       });
     }
   }
