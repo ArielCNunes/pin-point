@@ -11,4 +11,10 @@
   <ion-chip *ngFor="let tag of bookmark.tags">
     <ion-label>{{ tag }}</ion-label>
   </ion-chip>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" (click)="goToEditBookmark()">
+      <ion-icon name="create-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
