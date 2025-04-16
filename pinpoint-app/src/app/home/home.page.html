@@ -1,12 +1,5 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      PinPoint
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
+  <app-shared-header [showBackButton]="false"></app-shared-header>
   <ion-list>
     <ion-item-sliding *ngFor="let bookmark of bookmarks$ | async">
       <ion-item button (click)="goToBookmark(bookmark.id!)">

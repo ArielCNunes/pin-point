@@ -18,6 +18,7 @@ import {
 import { RouterModule, Router } from '@angular/router';
 import { BookmarkService, Bookmark } from 'src/app/services/bookmark.service';
 import { CommonModule } from '@angular/common';
+import { SharedHeaderComponent } from '../shared-header/shared-header.component';
 
 @Component({
   selector: 'app-home',
@@ -39,7 +40,8 @@ import { CommonModule } from '@angular/common';
     IonItemOption,
     RouterModule,
     CommonModule,
-    IonChip
+    IonChip,
+    SharedHeaderComponent
   ],
 })
 export class HomePage {
