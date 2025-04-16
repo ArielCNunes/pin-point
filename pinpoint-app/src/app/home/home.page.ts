@@ -9,7 +9,10 @@ import {
   IonIcon,
   IonList,
   IonItem,
-  IonLabel
+  IonLabel,
+  IonItemSliding,
+  IonItemOptions,
+  IonItemOption
 } from '@ionic/angular/standalone';
 import { RouterModule } from '@angular/router';
 import { BookmarkService, Bookmark } from 'src/app/services/bookmark.service';
@@ -30,6 +33,9 @@ import { CommonModule } from '@angular/common';
     IonList,
     IonItem,
     IonLabel,
+    IonItemSliding,
+    IonItemOptions,
+    IonItemOption,
     RouterModule,
     CommonModule
   ],
@@ -38,4 +44,8 @@ export class HomePage {
   bookmarks$ = this.bookmarkService.getBookmarks();
 
   constructor(private bookmarkService: BookmarkService) { }
+
+  deleteBookmark(id: string) {
+    this.bookmarkService.deleteBookmark(id);
+  }
 }
