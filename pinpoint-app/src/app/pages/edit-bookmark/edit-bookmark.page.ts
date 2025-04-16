@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonInput, IonTextarea, IonButton, NavController } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonToolbar, IonItem, IonLabel, IonInput, IonTextarea, IonButton, NavController } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { BookmarkService, Bookmark } from 'src/app/services/bookmark.service';
 import { SharedHeaderComponent } from '../../shared-header/shared-header.component';
@@ -11,7 +11,7 @@ import { SharedHeaderComponent } from '../../shared-header/shared-header.compone
   templateUrl: './edit-bookmark.page.html',
   styleUrls: ['./edit-bookmark.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonInput, IonTextarea, IonButton, CommonModule, FormsModule, SharedHeaderComponent]
+  imports: [IonContent, IonHeader, IonToolbar, IonItem, IonLabel, IonInput, IonTextarea, IonButton, CommonModule, FormsModule, SharedHeaderComponent]
 })
 export class EditBookmarkPage implements OnInit {
   // Holds the bookmark data to be edited, loaded from Firestore

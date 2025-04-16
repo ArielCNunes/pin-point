@@ -6,7 +6,6 @@ import { NavController } from '@ionic/angular';
 import {
   IonHeader,
   IonToolbar,
-  IonTitle,
   IonContent,
   IonItem,
   IonLabel,
@@ -25,7 +24,6 @@ import { environment } from 'src/environments/environment';
   imports: [
     IonHeader,
     IonToolbar,
-    IonTitle,
     IonContent,
     IonItem,
     IonLabel,
