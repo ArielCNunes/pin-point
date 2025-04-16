@@ -5,6 +5,10 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { firebaseConfig } from './app/firebase.config';
+import { addIcons } from 'ionicons';
+import { addOutline } from 'ionicons/icons';
+
+addIcons({ 'add-outline': addOutline });
 
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
