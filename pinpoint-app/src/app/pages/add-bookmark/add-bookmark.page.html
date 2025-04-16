@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Bookmark</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="saveBookmark()" #bookmarkForm="ngForm">
+    <ion-item>
+      <ion-label position="stacked">Title</ion-label>
+      <ion-input required [(ngModel)]="bookmark.name" name="name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Description</ion-label>
+      <ion-textarea [(ngModel)]="bookmark.description" name="description"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Tags (comma separated)</ion-label>
+      <ion-input [(ngModel)]="tagsString" name="tags"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Save</ion-button>
+  </form>
+</ion-content>
