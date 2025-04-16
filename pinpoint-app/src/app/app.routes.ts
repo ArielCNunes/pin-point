@@ -17,5 +17,9 @@ export const routes: Routes = [
   {
     path: 'edit-bookmark/:id',
     loadComponent: () => import('./pages/edit-bookmark/edit-bookmark.page').then(m => m.EditBookmarkPage)
+  },
+  {
+    path: 'bookmark/:id',
+    loadComponent: () => import('./pages/bookmark-detail/bookmark-detail.page').then( m => m.BookmarkDetailPage)
   }
 ];
