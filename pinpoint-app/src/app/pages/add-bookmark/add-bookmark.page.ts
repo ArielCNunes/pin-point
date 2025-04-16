@@ -15,6 +15,7 @@ import {
   IonButton
 } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
+import { SharedHeaderComponent } from 'src/app/shared-header/shared-header.component';
 
 @Component({
   selector: 'app-add-bookmark',
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     IonInput,
     IonTextarea,
     IonButton,
-    FormsModule
+    FormsModule,
+    SharedHeaderComponent
   ]
 })
 export class AddBookmarkPage {

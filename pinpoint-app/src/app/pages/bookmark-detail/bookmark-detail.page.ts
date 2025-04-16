@@ -5,13 +5,14 @@ import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { BookmarkService, Bookmark } from 'src/app/services/bookmark.service';
 import { Router } from '@angular/router';
+import { SharedHeaderComponent } from 'src/app/shared-header/shared-header.component';
 
 // Component decorator with metadata for the page
 @Component({
   selector: 'app-bookmark-detail',
   templateUrl: './bookmark-detail.page.html',
   styleUrls: ['./bookmark-detail.page.scss'],
-  imports: [IonicModule, CommonModule, FormsModule] // Use IonicModule instead of individual Ion* components
+  imports: [IonicModule, CommonModule, FormsModule, SharedHeaderComponent] // Use IonicModule instead of individual Ion* components
 })
 export class BookmarkDetailPage implements OnInit {
   // Holds the bookmark data loaded from Firestore
