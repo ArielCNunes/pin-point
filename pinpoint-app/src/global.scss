@@ -25,6 +25,85 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+/* Global font settings */
+body {
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #2d2c2c;
+}
+
+/* Global color variables */
+:root {
+    --primary-color: #00ff00;
+    /* Green from the prototype */
+    --secondary-color: #ff4081;
+    /* Pink for secondary buttons (can be customized) */
+    --background-color: #121212;
+    /* Dark background */
+    --text-color: #ffffff;
+    /* White text color */
+    --border-radius: 12px;
+    /* Border radius for rounded corners */
+}
+
+/* Global spacing utilities */
+p {
+    margin-bottom: 1rem;
+    /* Bottom margin for paragraphs */
+}
+
+ion-content {
+    padding: 0 16px;
+    /* Padding inside content */
+}
+
+/* Custom button styles to match prototype */
+ion-button {
+    --border-radius: var(--border-radius);
+    --background: var(--primary-color);
+    --color: #ffffff;
+}
+
+/* Global card styling */
+ion-card {
+    border-radius: var(--border-radius);
+    background-color: #1e1e1e;
+    padding: 16px;
+    margin: 8px 0;
+}
+
+/* Style for the header */
+ion-header {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+/* Adjust ion-chip (tags) appearance */
+ion-chip {
+    --background: #00ff00;
+    --color: #121212;
+    border-radius: 20px;
+}
+
+/* Style for ion-title (header text) */
+ion-title {
+    font-size: 24px;
+    color: #ffffff;
+}
+
+/* Adjusting background and text color for buttons in dark mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #181818;
+        color: #eaeaea;
+    }
+
+    ion-header {
+        background-color: #2e2e2e;
+    }
+}
+
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------
