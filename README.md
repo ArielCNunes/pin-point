@@ -21,9 +21,7 @@ A location bookmarking mobile app built using **Ionic + Angular + Firebase**, al
 - **Framework**: [Ionic](https://ionicframework.com/) + [Angular](https://angular.io/)
 - **Firebase Services**:
   - Firestore (Database)
-  - Storage (Image uploads)
   - Authentication (optional/future)
 - **Plugins**:
   - Capacitor Geolocation
-  - Capacitor Camera
 ---
