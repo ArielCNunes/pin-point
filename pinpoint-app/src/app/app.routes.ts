@@ -2,12 +2,8 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-  },
-  {
     path: '',
-    redirectTo: 'home',
+    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
     pathMatch: 'full',
   },
   {
@@ -20,6 +16,6 @@ export const routes: Routes = [
   },
   {
     path: 'bookmark/:id',
-    loadComponent: () => import('./pages/bookmark-detail/bookmark-detail.page').then( m => m.BookmarkDetailPage)
+    loadComponent: () => import('./pages/bookmark-detail/bookmark-detail.page').then(m => m.BookmarkDetailPage)
   }
 ];
