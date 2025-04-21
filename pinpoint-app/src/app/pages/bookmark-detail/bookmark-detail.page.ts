@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { SharedHeaderComponent } from 'src/app/shared-header/shared-header.component';
 import { environment } from 'src/environments/environment';
 
-// Component decorator with metadata for the page
+// Component for displaying details of a selected bookmark including a map
 @Component({
   selector: 'app-bookmark-detail',
   templateUrl: './bookmark-detail.page.html',
@@ -18,7 +18,9 @@ import { environment } from 'src/environments/environment';
 export class BookmarkDetailPage implements OnInit, AfterViewInit {
   // Holds the bookmark data loaded from Firestore
   bookmark: Bookmark | undefined;
+  // Comma-separated string of tags for display
   tagsString: string = ''; // Initialize tagsString
+  // Ensures the map is only loaded once
   mapLoaded = false;
 
   // Inject necessary services: ActivatedRoute for route parameters, BookmarkService for fetching data, and Router for navigation
@@ -28,13 +30,14 @@ export class BookmarkDetailPage implements OnInit, AfterViewInit {
     private router: Router
   ) { }
 
-  // ngOnInit lifecycle hook to fetch the bookmark by ID
+  // Lifecycle hook: retrieves bookmark ID and loads the corresponding data
   ngOnInit() {
     // Get the bookmark ID from the route parameters
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       // Fetch bookmarks and find the one that matches the ID
       this.bookmarkService.getBookmarks().subscribe(bookmarks => {
+        // Find and assign the bookmark matching the ID
         this.bookmark = bookmarks.find(b => b.id === id); // Set the bookmark object
         if (this.bookmark) {
           this.tagsString = this.bookmark.tags.join(', ') || ''; // Pre-fill the tags
@@ -43,14 +46,17 @@ export class BookmarkDetailPage implements OnInit, AfterViewInit {
     }
   }
 
+  // Lifecycle hook: initializes the map once the view is ready
   ngAfterViewInit() {
     // Wait for bookmark to load, then initialize map
     if (this.bookmark) {
+      // Immediately load map if bookmark is already available
       this.loadMap();
     } else {
       // If bookmark loads asynchronously
       this.bookmarkService.getBookmarks().subscribe(bookmarks => {
         const id = this.route.snapshot.paramMap.get('id');
+        // Load bookmark asynchronously and initialize map
         this.bookmark = bookmarks.find(b => b.id === id);
         if (this.bookmark && !this.mapLoaded) {
           this.loadMap();
@@ -59,11 +65,12 @@ export class BookmarkDetailPage implements OnInit, AfterViewInit {
     }
   }
 
+  // Loads Google Maps JavaScript API and initializes map
   loadMap() {
     if (!this.bookmark || this.mapLoaded) return;
     const lat = this.bookmark.latitude;
     const lng = this.bookmark.longitude;
-    // Load Google Maps JS API if not already loaded
+    // Dynamically inject Google Maps script if not already loaded
     if (!(window as any).google) {
       const script = document.createElement('script');
       script.src = `https://maps.googleapis.com/maps/api/js?key=${environment.googleMapsApiKey}`;
@@ -76,7 +83,7 @@ export class BookmarkDetailPage implements OnInit, AfterViewInit {
     }
   }
 
-  // Initialize the Google Map centered on the bookmark's location
+  // Initializes the Google Map centered on the bookmark's coordinates
   initMap(lat: number, lng: number) {
     const map = new (window as any).google.maps.Map(document.getElementById('map'), {
       center: { lat, lng },
@@ -92,7 +99,7 @@ export class BookmarkDetailPage implements OnInit, AfterViewInit {
     this.mapLoaded = true;
   }
 
-  // Open the bookmark's location in Google Maps in a new browser tab
+  // Opens the location in an external Google Maps tab
   openInMaps() {
     if (!this.bookmark) return;
     const lat = this.bookmark.latitude;
@@ -101,7 +108,7 @@ export class BookmarkDetailPage implements OnInit, AfterViewInit {
     window.open(url, '_blank');
   }
 
-  // Method to navigate to the edit page for this bookmark
+  // Navigates to the edit page for the current bookmark
   goToEditBookmark() {
     // If a bookmark is found, navigate to its edit page
     if (this.bookmark?.id) {

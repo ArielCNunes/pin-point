@@ -1,3 +1,4 @@
+<!-- Header with shared header component and back button enabled -->
 <ion-header [translucent]="true">
   <ion-toolbar>
     <app-shared-header [showBackButton]="true"></app-shared-header>
@@ -5,22 +6,27 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <!-- Bookmark form that calls saveBookmark() on submit -->
   <form (ngSubmit)="saveBookmark()" #bookmarkForm="ngForm">
+    <!-- Input for bookmark title -->
     <ion-item>
       <ion-label position="stacked">Title</ion-label>
       <ion-input required [(ngModel)]="bookmark.name" name="name"></ion-input>
     </ion-item>
 
+    <!-- Input for bookmark description -->
     <ion-item>
       <ion-label position="stacked">Description</ion-label>
       <ion-textarea [(ngModel)]="bookmark.description" name="description"></ion-textarea>
     </ion-item>
 
+    <!-- Input for bookmark tags as a comma-separated string -->
     <ion-item>
       <ion-label position="stacked">Tags (comma separated)</ion-label>
       <ion-input [(ngModel)]="tagsString" name="tags"></ion-input>
     </ion-item>
 
+    <!-- Submit button to save the bookmark -->
     <ion-button color="success" expand="full" type="submit">Save</ion-button>
   </form>
 </ion-content>

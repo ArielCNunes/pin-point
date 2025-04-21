@@ -1,3 +1,4 @@
+<!-- Page header with back button for navigation -->
 <ion-header [translucent]="true">
   <ion-toolbar>
     <app-shared-header [showBackButton]="true"></app-shared-header>
@@ -5,13 +6,16 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <!-- Form to update an existing bookmark -->
   <form (ngSubmit)="saveBookmark()" #bookmarkForm="ngForm">
+    <!-- Input field for bookmark title -->
     <ion-item>
       <ion-label position="stacked">Title</ion-label>
       <ion-input required [(ngModel)]="bookmark.name" name="name" #name="ngModel"></ion-input>
       <div *ngIf="name.invalid && name.touched" class="error-message">Title is required.</div>
     </ion-item>
 
+    <!-- Input field for bookmark description -->
     <ion-item>
       <ion-label position="stacked">Description</ion-label>
       <ion-textarea required [(ngModel)]="bookmark.description" name="description"
@@ -19,12 +23,14 @@
       <div *ngIf="description.invalid && description.touched" class="error-message">Description is required.</div>
     </ion-item>
 
+    <!-- Input field for tags, entered as a comma-separated string -->
     <ion-item>
       <ion-label position="stacked">Tags (comma separated)</ion-label>
       <ion-input required [(ngModel)]="tagsString" name="tags" #tags="ngModel"></ion-input>
       <div *ngIf="tags.invalid && tags.touched" class="error-message">Tags are required.</div>
     </ion-item>
 
+    <!-- Submit button to update the bookmark, disabled if form is invalid -->
     <ion-button expand="full" type="submit" [disabled]="!bookmarkForm.valid">Update</ion-button>
   </form>
 </ion-content>

@@ -1,17 +1,23 @@
 <ion-content [fullscreen]="true">
+  <!-- Custom shared header component, back button hidden on home -->
   <app-shared-header [showBackButton]="false"></app-shared-header>
+  <!-- List of bookmarks, each item supports swipe actions -->
   <ion-list>
+    <!-- Iterate through bookmarks asynchronously from an observable -->
     <ion-item-sliding *ngFor="let bookmark of bookmarks$ | async">
+      <!-- Clicking the item navigates to the bookmark detail page -->
       <ion-item button (click)="goToBookmark(bookmark.id!)">
         <ion-label>
           <h2>{{ bookmark.name }}</h2>
           <p>{{ bookmark.description }}</p>
+          <!-- Display tags for each bookmark using ion chips -->
           <ion-chip *ngFor="let tag of bookmark.tags">
             <ion-label>{{ tag }}</ion-label>
           </ion-chip>
         </ion-label>
       </ion-item>
       <ion-item-options side="end">
+        <!-- Swipe option to delete the bookmark -->
         <ion-item-option color="danger" (click)="deleteBookmark(bookmark.id!)">
           Delete
         </ion-item-option>
@@ -19,6 +25,7 @@
     </ion-item-sliding>
   </ion-list>
 
+  <!-- Floating action button to add a new bookmark -->
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button color="success" [routerLink]="['/add-bookmark']">
       <ion-icon name="add-outline"></ion-icon>

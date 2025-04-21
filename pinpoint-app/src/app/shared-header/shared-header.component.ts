@@ -10,6 +10,7 @@ import {
   IonTitle
 } from '@ionic/angular/standalone';
 
+// Shared header component used across pages to display a toolbar
 @Component({
   selector: 'app-shared-header',
   templateUrl: './shared-header.component.html',
@@ -26,12 +27,15 @@ import {
   ],
 })
 export class SharedHeaderComponent implements OnInit {
+  // Input property to toggle the visibility of the back button
   @Input() showBackButton: boolean = false;
 
+  // Inject NavController to handle back navigation
   constructor(private navCtrl: NavController) { }
 
   ngOnInit() { }
 
+  // Navigate back to the previous page
   goBack() {
     this.navCtrl.back();
   }

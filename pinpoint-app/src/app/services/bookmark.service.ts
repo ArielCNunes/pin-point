@@ -11,7 +11,7 @@ export interface Bookmark {
     longitude: number;
     photoUrl?: string;
     createdAt?: string;
-    address?: string;  // Add address field here
+    address?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -32,7 +32,7 @@ export class BookmarkService {
 
     // Updates an existing bookmark document in Firestore based on its ID.
     updateBookmark(id: string, data: Partial<Bookmark>) {
-        const docRef = doc(this.firestore, `bookmarks/${id}`);
+        const docRef = doc(this.firestore, `bookmarks/${id}`); // Reference to the specific document
         return updateDoc(docRef, data);
     }
 
